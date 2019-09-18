@@ -1,0 +1,13 @@
+docker pull mysql
+
+docker run --name tlmysql -d -p 3306:3306 -v /ZZZZZ/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" mysql
+
+docker run --name tlphpmyadmin -d --link tlmysql:db -p 20201:80 phpmyadmin/phpmyadmin
+
+docker run --name tlwordpress -d  --link tlmysql:wpdb -v /XXXXX/wordpress:/var/www/html wordpress
+
+docker run -p 80:80 --name tlnginx -v $PWD/nginx.conf:/etc/nginx/nginx.conf -v $PWD/conf.d:/etc/nginx/conf.d  -v $PWD/logs:/wwwlogs  -d --link tlwordpress:wp nginx
+
+docker cp nginx:/etc/nginx/nginx.conf ~/docker/nginx
+
+docker cp 50294700a6ff:/etc/nginx/nginx.conf ~/nginx/conf
