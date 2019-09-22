@@ -1,0 +1,93 @@
+
+sudo nginx -t
+
+sudo service nginx restart
+
+netstat -ano|grep 80  
+
+sudo systemctl stop nginx
+
+sudo systemctl restart nginx
+
+sudo systemctl reload nginx
+
+安装Nginx
+
+sudo apt update
+sudo apt install nginx
+
+sudo systemctl status nginx
+
+sudo nginx -v
+
+输出：nginx version: nginx/1.14.0 (Ubuntu)
+----------------
+
+Ubuntu安装之后的文件结构大致为：
+
+    1）配置文件都在/etc/nginx下，并且每个虚拟主机已经安排在了/etc/nginx/sites-available下
+
+    2）程序文件在/usr/sbin/nginx
+
+    3）日志放在了/var/log/nginx中
+
+    4）并已经在/etc/init.d/下创建了启动脚本nginx
+
+    5）默认的虚拟主机的目录设置在了/var/www/nginx-default (有的版本默认的虚拟主机的目录设置在了/var/www, 请参考/etc/nginx/sites-available里的配置)
+
+--------------------------
+1.删除nginx，-purge包括配置文件
+sudo apt-get --purge remove nginx
+
+2.移除全部不使用的软件包
+sudo apt-get autoremove
+ 
+3.罗列出与nginx相关的软件并删除
+dpkg --get-selections|grep nginx
+
+sudo apt-get --purge remove nginx
+
+sudo apt-get --purge remove nginx-common
+
+sudo apt-get --purge remove nginx-core
+
+
+4.查看nginx正在运行的进程，如果有就kill掉
+ps -ef |grep nginx
+
+sudo kill -9 XXX
+
+ 
+
+5.全局查找与nginx相关的文件
+sudo  find  /  -name  nginx*
+
+sudo rm -rf file
+
+ 
+6.删除列出的所有文件
+sudo rm -rf file
+
+7.重装nginx
+sudo apt-get update
+sudo apt-get install nginx
+
+  nginx: [emerg] a duplicate default server for 0.0.0.0:80 in /etc/nginx/sites-enabled/ms.recipe_box.com.conf:2
+
+删除/etc/nginx/sites-available/default文件，重新启动服务即可
+
+
+
+docker pull mysql
+
+docker run --name tlmysql -d -p 3306:3306 -v /ZZZZZ/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" mysql
+
+docker run --name tlphpmyadmin -d --link tlmysql:db -p 20201:80 phpmyadmin/phpmyadmin
+
+docker run --name tlwordpress -d  --link tlmysql:wpdb -v /XXXXX/wordpress:/var/www/html wordpress
+
+docker run -p 80:80 --name tlnginx -v $PWD/nginx.conf:/etc/nginx/nginx.conf -v $PWD/conf.d:/etc/nginx/conf.d  -v $PWD/logs:/wwwlogs  -d --link tlwordpress:wp nginx
+
+docker cp nginx:/etc/nginx/nginx.conf ~/docker/nginx
+
+docker cp 50294700a6ff:/etc/nginx/nginx.conf ~/nginx/conf
