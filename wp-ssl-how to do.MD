@@ -99,9 +99,8 @@ MYSQL_ROOT_PASSWORD=mywebpwd
 MYSQL_DATABASE=myweb-db-container
 MYSQL_USER=root
 MYSQL_PASSWORD=mywebpwd
-#
+
 # Wordpress Container configuration
-#
 CONTAINER_WP_NAME=myweb-wp-container
 
 # Max Log File Size
@@ -113,7 +112,6 @@ CONTAINER_WP_NAME=myweb-wp-container
 WP_CORE=/var/www/html
 WP_CONTENT=/var/www/html/wp-content
 
-
 # Table prefix
 WORDPRESS_TABLE_PREFIX=wp_
 
@@ -123,10 +121,8 @@ DOMAINS=myweb.com,www.myweb.com
 # Your email for Let's Encrypt register
 LETSENCRYPT_EMAIL=info@myweb.com
 
-//8。执行项目
-
+# 执行项目
 docker-compose up -d
-
-                                                                                                                                             91,1          Bot
+                                                                                                                                         
 
 
