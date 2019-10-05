@@ -1,21 +1,18 @@
 
-// 1.创建nginx 代理相关文件
+# 创建nginx 代理相关文件
 
 mkdir nginx-proxy && cd nginx-proxy
 git clone https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion.git .
 
-
-//2.设置环境变量
+# 设置环境变量
 
 mv .env.sample .env && vim .env
 
-
-//3.执行
+# 执行
 
  ./start.sh
 
-
-//4 创建wordpress  ssl
+# 创建wordpress  ssl
 
 mkdir wordpress-letsencrypt && cd wordpress-letsencrypt
 
@@ -24,7 +21,7 @@ git clone https://github.com/evertramos/docker-wordpress-letsencrypt.git .
  vim docker-compose.yml
 
 
-// 5 编辑内容
+# 编辑内容
 
 version: '3'
 
@@ -65,26 +62,13 @@ services:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: mywebpwd
 
-# logging:
-      # options:
-        # max-size: ${LOGGING_OPTIONS_MAX_SIZE:-200k}
-
-#   wpcli:
-#     image: tatemz/wp-cli
-#     volumes:
-#       - ${WP_CORE}:/var/www/html
-#       - ${WP_CONTENT}:/var/www/html/wp-content
-#     depends_on:
-#       - db
-#     entrypoint: wp
-
 networks:
     default:
        external:
          name: webproxy
 
 
-//7. 设置wp 环境变量
+# 设置wp 环境
 
 mv .env.sample .env && vim .env
 
