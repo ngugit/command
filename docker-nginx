@@ -1,3 +1,31 @@
+Docker
+
+https://github.com/ninghao/w-store/tree/master/public
+
+
+
+sudo curl -sSL https://get.docker.com/ | sh
+
+sudo apt install docker-compose
+
+sudo usermod -aG docker $USER
+
+
+然后重启
+
+
+
+sudo apt remove docker docker-engine docker.io
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+
+
+
 
 sudo nginx -t
 
