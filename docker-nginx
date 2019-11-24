@@ -1,3 +1,13 @@
+Nginx
+
+Ifconfig   //显示网络设备 
+
+
+ifconfig ech0 192.168.1.9.   netmast 255.255.255.0
+
+
+Ifconfig echo:1 192.168.1.7 broadcast 192.168.1.255  netmast 255.255.255.0
+
 Docker
 
 https://github.com/ninghao/w-store/tree/master/public
